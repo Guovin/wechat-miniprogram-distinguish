@@ -1,0 +1,58 @@
+<!--index.wxml-->
+<view class="container">
+  <image class="bg_img" src="{{image_url}}" wx:if="{{!picFilePath}}" bindtap="closeLeft" bindtouchmove="slideEnd" bindtouchstart="sildeStart"></image>
+  <view class="result_container" wx:if="{{picFilePath}}" bindtap="closeLeft" bindtouchmove="slideEnd" bindtouchstart="sildeStart">
+  <view class="pic_container" bindtap="preViewImg">
+    <image class="picture" bindload="selectPicOk" src="{{picFilePath}}">
+    </image>
+  </view>
+  <view class="result" wx:if="{{result.length !== 0}}">
+    <view class="result_num"><icon class="iconfont icon-sousuo1"></icon>识别结果数：{{resultNum}}</view>
+    <view class="slider_tip" wx:if="{{resultNum > 1}}">滑动卡片查看更多</view>
+    <!-- 侧滑卡片区域 -->
+    <swiper autoplay="true" indicator-dots="true" bindchange="swiperChange" style="height:{{resultHeights[current] + 30}}px;">
+      <block wx:for="{{result}}" wx:key="index">
+      <swiper-item>
+        <view class="result_card">
+      <view class="info_container">
+      <view class="score_paint"><view class="title_paint"><icon class="iconfont icon-chazhaoxiangsi"></icon>相似度</view><text class="score">{{item.score}}</text></view>
+      <view class="base_info"><view class="title_icon"><icon class="iconfont icon-fenleishouye"></icon>分类：</view>{{item.root}}</view>
+      <view class="base_info"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>关键词：</view>{{item.keyword}}</view>
+      </view>
+      <view wx:if="{{item.baike_info}}" class="baidu_container">
+        <view class="baidu_header"><view class="baidu_title"><icon class="iconfont icon-baidu2"></icon>百度百科</view>
+      <!-- <view class="go_baidu"><web-view src="{{item.baike_info.baike_url}}">去百度看看</web-view></view> -->
+    </view>
+      <view class="desc_container"><icon class="iconfont icon-miaoshu"></icon>描述：<view class="desc_text" style="min-height:300rpx;"><image class="baike_img" bindtap="showResultImg" data-img="{{item.baike_info.image_url}}" wx:if="{{item.baike_info.image_url}}" src="{{item.baike_info.image_url}}"></image>{{item.baike_info.description}}
+      </view>
+    </view>
+      </view>
+    </view>
+      </swiper-item>
+    </block>
+    </swiper>
+  </view>
+  </view>
+  <view class="left_page {{isRuleTrue ? 'isShow' : 'isHide'}}" wx:if="{{useSwitch}}">
+    <!-- 选择分类 -->
+    <view class="type_title">识别类型</view>
+  <view class="rg_view">
+      <radio-group bindchange="radioChange" class="rg">
+        <label class="rg_label" wx:for="{{items}}" wx:key="index">
+          <view class="rg_icon"><iconfont class="rg_iconfont" name="{{item.iconName}}"/><text style="color:{{item.textColor}}">{{item.name}}</text></view>
+          <view class="radio_cate">
+            <radio class="rg_radio" value="{{item.value}}" checked="{{item.checked}}"/>
+          </view>
+        </label>
+      </radio-group>
+    </view>
+    <view class="feed_back" bindtap="openFeedBack"><iconfont class="rg_iconfont" name="dengpao"/><text>反馈</text></view>
+  </view>
+  <view class="fixed_bottom">
+    <view class="more {{moreTap ? 'moreStyle' : ''}}" bindtap="openLeftPage"><icon class="iconfont icon-gengduo"></icon></view>
+    <view class="camera {{cameraTap ? 'cameraStyle' : ''}}" bindtap="upLoad" data-type="camera"><icon class="iconfont icon-xiangji"></icon></view>
+    <view class="photo {{photoTap ? 'photoStyle' : ''}}" bindtap="upLoad" data-type="album"><icon class="iconfont icon-xiangce"></icon></view>
+  </view>
+  <avatar id="avatar"></avatar>
+  <canvas canvas-id="canvas" style="width:{{cWidth}}px;height:{{cHeight}}px;position: absolute;left:-1000px;top:-1000px;"></canvas>
+</view>

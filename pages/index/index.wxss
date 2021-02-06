@@ -1,0 +1,304 @@
+/**index.wxss**/
+.container{
+  height:100vh;
+}
+
+.pic_container{
+  width: 88%;
+  height: 400rpx;
+  margin: 0 auto;
+  border: 2rpx solid rgba(0,0,0,.3);
+  border-radius: 8rpx;
+}
+
+.picture{
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+
+.result{
+  margin-bottom:150rpx;
+}
+
+.result_container{
+  height:100%;
+}
+
+.fixed_bottom{
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+  height: 8%;
+  width: 100%;
+  background: #F7F7F7;
+}
+
+.more,.camera,.photo{
+  width: 20%;
+  text-align: center;
+  position: relative;
+  color:rgba(0,0,0,.8)
+}
+
+.more{
+  left:40rpx;
+}
+
+.photo{
+  right:40rpx;
+}
+
+.fixed_bottom .iconfont{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-size: 60rpx;
+}
+
+.left_page{
+  position:fixed;
+  height:100%;
+  width: 35%;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  background:rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+  border-right: 2rpx solid rgba(0,0,0,.1);
+}
+
+.type_title{
+  font-size: 20rpx;
+  color: rgba(0,0,0,.5);
+  text-align: center;
+}
+
+.rg_label{
+  display:flex;
+  justify-content: left;
+  border-bottom: 2rpx solid rgba(0,0,0,.1);
+  border-top: 2rpx solid rgba(0,0,0,.1);
+}
+
+.rg_icon{
+  display:flex;
+  justify-content: left;
+  margin:30rpx auto 30rpx 15rpx;
+}
+
+.rg_iconfont{
+  position: relative;
+  top:5rpx;
+}
+
+.feed_back{
+  display:flex;
+  justify-content: left;
+  padding:15rpx;
+  margin-top: 100%;
+  border-top: 2rpx solid rgba(0,0,0,.1);
+  border-bottom: 2rpx solid rgba(0,0,0,.1);
+}
+
+.feed_back text{
+  padding-left: 10rpx;
+  font-size:31rpx;
+}
+
+.rg_icon text{
+  padding-left: 10rpx;
+  font-size: 31rpx;
+}
+
+.radio_cate{
+  padding: 26rpx;
+}
+
+/* 单选按钮样式*/
+
+radio .wx-radio-input {
+  width: 40rpx;
+  height: 40rpx;
+  border: 4rpx solid #999;
+  border-radius: 100%;
+  background: none;
+}
+
+@keyframes showLeft{
+  from{
+    transform:translate(-300rpx,0);
+  }
+  to{
+    transform:translate(0,0)
+  }
+}
+
+@keyframes hideLeft{
+  from{
+    transform: translate(0,0);
+  }
+  to{
+    transform:translate(-300rpx,0);
+  }
+}
+
+.isShow {
+  animation:showLeft .3s;
+  animation-fill-mode:forwards;
+}
+ 
+.isHide {
+  animation:hideLeft .3s;
+  animation-fill-mode:forwards;
+}
+
+.moreStyle,.cameraStyle,.photoStyle{
+  color:green;
+}
+
+.result_num{
+  width: 88%;
+  margin: 30rpx auto 0 auto;
+  font-size: 25rpx;
+}
+
+.slider_tip{
+  width: 88%;
+  margin: 30rpx auto 5rpx auto;
+  text-align: center;
+  font-size: 25rpx;
+  color: grey;
+}
+
+.result_card{
+  width: 88%;
+  min-height: 215rpx;
+  margin: 0 auto;
+  border-radius: 8rpx;
+  border-top:2rpx solid rgba(0,0,0,.3);
+  border-left:2rpx solid rgba(0,0,0,.3);
+  box-shadow: 2rpx 2rpx 2rpx 2rpx rgba(0,0,0,.2);
+  background-color:rgba(234, 238, 185, 0.2)
+}
+
+.info_container{
+  padding: 10rpx;
+  position: relative;
+}
+
+.info_container icon{
+  padding-right: 8rpx;
+}
+
+.score{
+  color: red;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+.base_info{
+  display:flex;
+  justify-content:left;
+  height:60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
+}
+
+.score_paint{
+  position: absolute;
+  transform: rotate(23deg);
+  right:10rpx;
+}
+
+.title_paint{
+  font-weight: bold;
+  font-size: 25rpx;
+}
+
+.title_icon{
+  font-weight: bold;
+  font-size: 30rpx;
+}
+
+.baidu_container{
+  margin:0 auto;
+  padding-bottom:20rpx;
+  border-top:2rpx solid rgba(0,0,0,.3);
+}
+
+.baike_img{
+  width: 300rpx;
+  height: 300rpx;
+  border:2rpx solid rgba(0,0,0,.3);
+  float: right;
+  border-radius: 8rpx;
+}
+
+.desc_container{
+  padding-left: 10rpx;
+}
+
+.desc_text{
+  font-size: 25rpx;
+  padding: 8rpx 8rpx 0 0;
+  text-align: justify;
+}
+
+.baidu_header{
+  display: flex;
+  justify-content: space-between;
+  height: 60rpx;
+}
+
+.baidu_title{
+  font-weight: bold;
+  line-height: 60rpx;
+  padding-left: 10rpx;
+}
+
+.icon-baidu2,.icon-miaoshu{
+  padding-right: 8rpx;
+}
+
+.go_baidu{
+  line-height: 60rpx;
+  font-size: 25rpx;
+  color: rgba(30, 76, 226, 0.7);
+  padding-right: 5rpx;
+}
+
+.bg_img{
+  width: 100%;
+  height: 100%;
+}
+
+/* 暗黑模式下应用的样式 */
+@media (prefers-color-scheme: dark) {
+  .fixed_bottom{
+    background: rgba(0,0,0,0.9);
+  }
+  .more,.camera,.photo{
+    color:grey;
+  }
+  .moreStyle,.cameraStyle,.photoStyle{
+    color:green;
+  }
+  .left_page{
+    background-color:rgba(0,0,0,.8);
+    border-right: 2rpx solid rgba(255,255,255,.1);
+  }
+  .feed_back,.type_title,.rg_icon{
+    color:white;
+  }
+  .rg_label,.feed_back{
+    border-bottom: 2rpx solid rgba(255,255,255,.1);
+    border-top: 2rpx solid rgba(255,255,255,.1);
+  }
+  .result_card{
+    background-color: rgba(0,0,0);
+  }
+}
