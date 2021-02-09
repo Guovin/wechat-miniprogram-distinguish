@@ -20,7 +20,7 @@
 .feedBack_dialog{
   position: relative;
   margin: 100rpx auto;
-  border-radius: 4rpx;
+  border-radius: 10rpx;
   box-shadow: 0 2rpx 6rpx rgb(0 0 0 / 30%);
   box-sizing: border-box;
   width: 95%;

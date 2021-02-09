@@ -46,8 +46,16 @@ Page({
       let that = this
       wx.getStorageInfo({
         success (res) {
-          if(res.keys[0]){
-            resolve(that.setData({nickName:res.keys[0].split(",")[0]}))
+          // 遍历寻找用户信息，区分识别缓存
+          let user = []
+          res.keys.forEach(item =>{
+            // 根据用户头像地址进行区分
+            if(item.indexOf("https://") != -1){
+              user = item
+            }
+          })
+          if(user.length != 0){
+            resolve(that.setData({nickName:user.split(",")[0]}))
           }else{
             resolve()
           }
@@ -71,22 +79,24 @@ Page({
             // 根据key查询所有value
             let newList = []
             option.keys.forEach(item=>{
-              try {
-                let value = wx.getStorageSync(item)
-                if (value) {
-                  // 格式化处理storage
-                  let emailContent = value.split(",")
-                  let nameUrlTime = item.split(",")
-                  let history = {}
-                  history.name = nameUrlTime[0]
-                  history.avatarUrl = nameUrlTime[1]
-                  history.time = nameUrlTime[2]
-                  history.email = emailContent[0]
-                  history.content = emailContent[1]
-                  newList.push(history)
+              if(item.indexOf("https://") != -1){
+                try {
+                  let value = wx.getStorageSync(item)
+                  if (value) {
+                    // 格式化处理storage
+                    let emailContent = value.split(",")
+                    let nameUrlTime = item.split(",")
+                    let history = {}
+                    history.name = nameUrlTime[0]
+                    history.avatarUrl = nameUrlTime[1]
+                    history.time = nameUrlTime[2]
+                    history.email = emailContent[0]
+                    history.content = emailContent[1]
+                    newList.push(history)
+                  }
+                } catch (e) {
+                  console.log(e)
                 }
-              } catch (e) {
-                console.log(e)
               }
             })
             // 更新storage并移动滚动条位置
@@ -199,14 +209,10 @@ Page({
             }else{
               //保存消息记录
               let newDate = new Date() //获取当前日期与时间
-              let name = that.data.nickName
-              let avatar = that.data.avatarUrl
-              let message = that.data.form.massage
               // 保存Storage，key为昵称+头像地址+时间，data为发送的邮箱+内容
-              wx.setStorage({
-                data: `${that.data.form.name},${message}`,
-                key: `${name},${avatar},${newDate.toLocaleString()}`,
-              })
+              let key = `${that.data.nickName},${that.data.avatarUrl},${newDate.toLocaleString()}`
+              let data = `${that.data.form.name},${that.data.form.massage}`
+              wx.setStorageSync(key,data)
               that.getStorage()
               that.setData({loading:false,nothingTip:false,'form.massage':''})
             }

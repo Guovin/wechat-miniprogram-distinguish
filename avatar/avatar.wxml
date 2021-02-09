@@ -22,7 +22,7 @@
       <view class="history_message">
         <view wx:if="{{nothingTip}}" class="nothing_tip"><span class="tip_content">无反馈记录</span></view>
         <scroll-view scroll-y="true"  scroll-into-view="{{viewInto}}"  style="height:{{dialogScrollHeight}};">
-        <block wx:for="{{myStorage}}" wx:key="*this">
+        <block wx:for="{{myStorage}}" wx:key="index">
         <view class="sent_message" id="message_{{index}}">
           <view class="sent_address">({{item.email}}){{item.name}}</view>
           <view class="content_avatar">

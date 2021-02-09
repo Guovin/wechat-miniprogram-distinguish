@@ -1,16 +1,18 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "@navBackgroundColor",
     "navigationBarTitleText": "拍图识别",
-    "navigationBarTextStyle":"@navTextStyle"
+    "navigationBarTextStyle": "@navTextStyle"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "usingComponents": {"iconfont":"/iconfont/iconfont"},
-  "darkmode":true,
-  "themeLocation":"theme.json"
+  "usingComponents": {
+    "iconfont": "/iconfont/iconfont"
+  },
+  "darkmode": true,
+  "themeLocation": "theme.json"
 }
