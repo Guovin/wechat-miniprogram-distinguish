@@ -1,0 +1,40 @@
+<!--pages/result/result.wxml-->
+<!-- <view class="result_container" wx:if="{{picFilePath}}" bindtap="closeLeft" bindtouchmove="slideEnd" bindtouchstart="sildeStart"> -->
+  <view class="result_container" wx:if="{{picFilePath}}">
+  <view class="pic_container" bindtap="preViewImg">
+    <image class="picture" bindload="selectPicOk" src="{{picFilePath}}">
+    </image>
+  </view>
+  <view class="result" wx:if="{{result.length !== 0}}">
+    <view class="result_num" wx:if="{{resultNum !== 0}}"><icon class="iconfont icon-sousuo1"></icon>识别结果数：<text class="num_text">{{resultNum}}</text></view>
+    <view class="slider_tip" wx:if="{{resultNum > 1}}">滑动卡片查看更多</view>
+    <!-- 侧滑卡片区域 -->
+    <swiper indicator-dots="true" bindchange="swiperChange" style="height:{{resultHeights[current] + 40}}px;">
+      <block wx:for="{{result}}" wx:key="index">
+      <swiper-item>
+        <view class="result_card">
+      <view class="info_container">
+      <view class="score_paint" wx:if="{{item.score}}"><text class="score">{{item.score}}</text></view>
+      <view class="score_paint" wx:if="{{item.probability}}"><text class="score">{{item.probability}}</text></view>
+      <view class="base_info" wx:if="{{item.keyword}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view>{{item.keyword}}</view></view>
+      <view class="base_info" wx:if="{{item.name}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view>{{item.name}}</view></view>
+      <view class="base_info" wx:if="{{item.wineNameCn}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view>{{item.wineNameCn}}</view></view>
+      <view class="base_info" wx:if="{{item.root}}"><view class="title_icon"><icon class="iconfont icon-fenleishouye"></icon>分类：</view>{{item.root}}</view>
+      <view class="base_info" wx:if="{{item.has_calorie}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>卡路里：</view>有</view>
+      <view class="base_info" wx:if="{{item.has_calorie == false}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>卡路里：</view>无</view>
+      </view>
+      <view wx:if="{{item.baike_info}}" class="baidu_container">
+    <view class="desc_container">
+      <view class="baike_imgView">
+      <image class="baike_img" bindtap="showResultImg" data-img="{{item.baike_info.image_url}}" wx:if="{{item.baike_info.image_url}}" src="{{item.baike_info.image_url}}"></image>
+      </view>
+      <view class="desc_text" style="min-height:300rpx;"><text>{{item.baike_info.description}}</text></view>
+    </view>
+      </view>
+      <view class="copy" bindtap="copyResult" data-result="{{item}}">复制结果</view>
+    </view>
+      </swiper-item>
+    </block>
+    </swiper>
+  </view>
+  </view>

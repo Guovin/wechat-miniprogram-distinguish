@@ -1,4 +1,13 @@
-<!--components/avatar.wxml-->
+<!--moreFunc/morefunc.wxml-->
+<!-- 更多功能悬浮框 -->
+<view class="more_container">
+    <view class="more {{moreTap ? 'moreStyle' : ''}}" bindtap="openLeftPage"><iconfont name="more"></iconfont></view>
+    <view class="history_container {{moreTap ? 'history_animation' : ''}}" wx:if="{{moreTap}}">
+    <view class="search_sum" bindtap="showHistory"><iconfont class="rg_iconfont" name="lishi2"/></view>
+    <view class="search_num" wx:if="{{historyNum > 0}}">{{historyNum}}</view>
+    </view>
+    <view class="feed_back {{moreTap ? 'feed_animation' : ''}}" bindtap="openFeedBack" wx:if="{{moreTap}}"><iconfont class="rg_iconfont" name="dengpao"/></view>
+</view>
 
 <!-- 授权提示对话框 -->
 <view class="dialog_container" wx:if="{{showAuthTip}}">
@@ -18,7 +27,7 @@
 <!-- 反馈对话框区域 -->
 <view class="dialog_container" wx:if="{{dialogFormVisible}}">
 <view class="feedBack_dialog">
-  <view class="dialog_title"><iconfont name="dengpao"/>反馈建议</view>
+  <view class="dialog_title"><iconfont name="dengpao1"/>反馈建议</view>
       <view class="history_message">
         <view wx:if="{{nothingTip}}" class="nothing_tip"><span class="tip_content">无反馈记录</span></view>
         <scroll-view scroll-y="true"  scroll-into-view="{{viewInto}}"  style="height:{{dialogScrollHeight}};">

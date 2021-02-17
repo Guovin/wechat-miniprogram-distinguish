@@ -1,4 +1,96 @@
-/* components/avatar.wxss */
+/* moreFunc/morefunc.wxss */
+@keyframes moreRevolve{
+  to{
+    transform: scale(1,1.5) rotate(-60deg);
+  }
+}
+
+.more{
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  position: fixed;
+  color:rgb(75, 73, 73);
+  z-index:999;
+  right:60rpx;
+  bottom:110rpx;
+  line-height:100rpx;
+  transform: rotate(-60deg);
+}
+
+.more .iconfont{
+  font-size: 40px;
+}
+
+.moreStyle{
+  color:rgb(90, 190, 90);
+  animation:moreRevolve .8s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes feedBack{
+  to{
+    opacity: 1;
+    transform: translate(-65rpx,-65rpx);
+  }
+}
+
+.feed_animation{
+  animation:feedBack .5s;
+  animation-fill-mode: forwards;
+}
+
+.feed_back{
+  opacity: 0;
+  position: fixed;
+  z-index: 9999;
+  right:80rpx;
+  bottom:110rpx;
+  border-radius: 50%;
+  border:2rpx solid rgba(0,0,0,.3);
+}
+
+@keyframes historyMove{
+  to{
+    opacity: 1;
+    transform: translate(-65rpx,65rpx);
+  }
+}
+
+.history_animation{
+  animation:historyMove .5s;
+  animation-fill-mode: forwards;
+}
+
+.history_container{
+  opacity:0;
+  position: fixed;
+  z-index: 9999;
+  right:80rpx;
+  bottom:110rpx;
+  line-height: 60rpx;
+}
+
+.search_sum{
+  border-radius: 50%;
+  border:2rpx solid rgba(0,0,0,.3);
+}
+
+.search_num{
+  width: 30rpx;
+  height: 30rpx;
+  border-radius:50%;
+  background-color:rgb(209, 27, 27);
+  position: relative;
+  text-align: center;
+  line-height: 30rpx;
+  top:-60rpx;
+  right:20rpx;
+  font-size:25rpx;
+  color:white;
+}
+
+
 .dialog_container{
   position: fixed;
   top: 0;
@@ -37,8 +129,8 @@
   box-shadow: 0 2rpx 6rpx rgb(0 0 0 / 30%);
   box-sizing: border-box;
   width: 80%;
-  height: 20%;
-  background:rgba(255,255,255,0.5);
+  height: 15%;
+  background:rgba(255,255,255,0.8);
 }
 
 .authTip_content{
@@ -261,5 +353,9 @@
 
   .authTip_dialog{
     background: rgba(0,0,0,0.9);
+  }
+
+  .feed_back,.search_sum{
+    border:2rpx solid grey;
   }
 }

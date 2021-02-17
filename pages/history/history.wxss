@@ -1,0 +1,94 @@
+/* pages/history/history.wxss */
+@keyframes cardIn{
+  to{
+    transform: translate(0,0)
+  }
+}
+
+.history{
+  background-color:rgb(245, 221, 242);
+  padding-top:30rpx;
+  height: 100vh;
+}
+
+.history_card{
+  position: relative;
+  width: 90%;
+  height:135rpx;
+  margin: 0 auto 30rpx auto;
+  border-radius: 10rpx;
+  box-shadow: 0 1px 10px rgba(0,0,0,.1);
+  display:flex;
+  justify-content: space-between;
+  background-image: linear-gradient(to right,rgb(224, 239, 245),rgb(144, 215, 243));
+  transform: translate(0,100vh);
+  animation: cardIn .8s linear;
+  animation-fill-mode: forwards;
+}
+
+.history_title{
+  font-size: 35rpx;
+  font-weight: bold;
+  margin:10rpx 0 0 10rpx;
+}
+
+.history_time{
+  position: absolute;
+  right:5rpx;
+  bottom:3rpx;
+  color:grey;
+  font-size:20rpx;
+}
+
+.history_score{
+  font-size: 30rpx;
+  color:rgb(170, 57, 57);
+  font-weight: bold;
+  margin:10rpx 0 0 10rpx;
+}
+
+.history_img{
+  width: 100rpx;
+  height: 100rpx;
+  border-top-right-radius: 10rpx;
+}
+
+.no_history{
+  width: 90%;
+  margin: 15% auto;
+  text-align: center;
+  color:grey;
+  font-size: 25rpx;
+}
+
+.no_history::before {
+  content: "";
+  width: 140rpx;
+  height: 2rpx;
+  background-color: #a1a6af;
+  display: inline-block;
+  position: relative;
+  top: -10rpx;
+  left: -16rpx;
+}
+
+.no_history::after {
+  content: "";
+  width: 140rpx;
+  height: 2rpx;
+  background-color: #a1a6af;
+  display: inline-block;
+  position: relative;
+  top: -10rpx;
+  left: 10rpx;
+}
+
+/* 暗黑模式下应用的样式 */
+@media (prefers-color-scheme: dark) {
+  .history{
+    background-color:#111111;
+  }
+  .history_card{
+    background-image: linear-gradient(to right,rgb(65, 65, 63),rgb(25, 26, 24));
+  }
+}

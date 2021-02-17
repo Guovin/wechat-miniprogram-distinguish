@@ -1,12 +1,20 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/advance/advance",
+    "pages/animal/animal",
+    "pages/dishs/dishs",
+    "pages/plant/plant",
+    "pages/red_wine/red_wine",
+    "pages/result/result",
+    "pages/history/history"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "@navBackgroundColor",
     "navigationBarTitleText": "拍图识别",
-    "navigationBarTextStyle": "@navTextStyle"
+    "navigationBarTextStyle": "@navTextStyle",
+    "backgroundColor": "#F5DDF2"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

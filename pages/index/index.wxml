@@ -1,109 +1,37 @@
 <!--index.wxml-->
-<view class="container" bindtouchmove="slideEnd" bindtouchstart="sildeStart">
-  <!-- <image class="bg_img" src="{{image_url}}" wx:if="{{!picFilePath}}" bindtap="closeLeft" bindtouchmove="slideEnd" bindtouchstart="sildeStart"></image> -->
-  <view class="index_page" wx:if="{{!picFilePath && !historyShow}}" bindtap="pauseAutoPlay">
-    <!-- 首页卡片 -->
-    <view class="index_card"  wx:if="{{selectItem}}" bindtap="closeLeft">
-      <!-- 滑块图片容器 -->
-      <swiper autoplay="{{IndexAutoPlay}}" bindchange="indexSwiperChange" current="0" style="height:350rpx;">
-        <block wx:for="{{image_url}}" wx:key="index">
-        <swiper-item>
-      <view class="index_imgContainer">
-        <image class="index_img" src="{{item}}"></image>
-      </view>
-    </swiper-item>
-       </block>
-    </swiper>
-      <view class="index_content">
-        <view class="index_title">{{swiper_title}}</view>
-        <view class="index_text"><text>{{swiper_content}}</text></view>
-        <text class="go_detail" bindtap="goDetail">相关识别</text>
-      </view>
+<view class="container">
+  <!-- 首页识别类型分类 -->
+  <view class="cate_page">
+    <view class="between_advance">
+    <view class="advance_card" bindtap="selectAdvance">
+      <view class="advance_item"><iconfont class="cate_iconfont" name="hongmoshibie"/></view>
+      <view class="advance_text">通用识别</view>
     </view>
+    </view>
+    <view class="between_view">
+      <view class="plant_card cate_card" bindtap="selectPlant">
+      <view class="cate_item"><iconfont class="cate_iconfont" name="hua1"/></view>
+      <view class="cate_text">植物识别</view>
+    </view>
+    <view class="animal_card cate_card" bindtap="selectAnimal">
+      <view class="cate_item"><iconfont class="cate_iconfont" name="dongwutubiao_gou"/></view>
+      <view class="cate_text">动物识别</view>
+    </view>
+   </view>
+   <view class="between_view">
+    <view class="redWine_card cate_card" bindtap="selectRedWine">
+      <view class="cate_item"><iconfont class="cate_iconfont" name="wine"/></view>
+      <view class="cate_text">红酒识别</view>
+    </view>
+    <view class="dishs_card cate_card" bindtap="selectDishs">
+      <view class="cate_item"><iconfont class="cate_iconfont" name="shiwu1"/></view>
+      <view class="cate_text">菜品识别</view>
+    </view>
+  </view>
+  <!-- 底部Logo -->
+  <view class="logo"><iconfont name="2"></iconfont><view class="logo_text">拍图识别</view></view>
   </view>
 
-  <view class="result_container" wx:if="{{picFilePath && !historyShow}}" bindtap="closeLeft" bindtouchmove="slideEnd" bindtouchstart="sildeStart">
-  <view class="pic_container" bindtap="preViewImg">
-    <image class="picture" bindload="selectPicOk" src="{{picFilePath}}">
-    </image>
-  </view>
-  <view class="result" wx:if="{{result.length !== 0}}">
-    <view class="result_num" wx:if="{{resultNum !== 0}}"><icon class="iconfont icon-sousuo1"></icon>识别结果数：<text class="num_text">{{resultNum}}</text></view>
-    <view class="slider_tip" wx:if="{{resultNum > 1}}">滑动卡片查看更多</view>
-    <!-- 侧滑卡片区域 -->
-    <swiper indicator-dots="true" bindchange="swiperChange" style="height:{{resultHeights[current] + 30}}px;">
-      <block wx:for="{{result}}" wx:key="index">
-      <swiper-item>
-        <view class="result_card">
-      <view class="info_container">
-      <!-- <view class="score_paint" wx:if="{{item.score}}"><view class="title_paint"><icon class="iconfont icon-chazhaoxiangsi"></icon>相似度</view><text class="score">{{item.score}}</text></view> -->
-      <view class="score_paint" wx:if="{{item.score}}"><text class="score">{{item.score}}</text></view>
-      <!-- <view class="score_paint" wx:if="{{item.probability}}"><view class="title_paint"><icon class="iconfont icon-chazhaoxiangsi"></icon>相似度</view><text class="score">{{item.probability}}</text></view> -->
-      <view class="score_paint" wx:if="{{item.probability}}"><text class="score">{{item.probability}}</text></view>
-      <view class="base_info" wx:if="{{item.keyword}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view>{{item.keyword}}</view></view>
-      <view class="base_info" wx:if="{{item.name}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view>{{item.name}}</view></view>
-      <view class="base_info" wx:if="{{item.wineNameCn}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view>{{item.wineNameCn}}</view></view>
-      <view class="base_info" wx:if="{{item.root}}"><view class="title_icon"><icon class="iconfont icon-fenleishouye"></icon>分类：</view>{{item.root}}</view>
-      <view class="base_info" wx:if="{{item.has_calorie}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>卡路里：</view>有</view>
-      <view class="base_info" wx:if="{{item.has_calorie == false}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>卡路里：</view>无</view>
-      </view>
-      <view wx:if="{{item.baike_info}}" class="baidu_container">
-        <!-- <view class="baidu_header"><view class="baidu_title"><icon class="iconfont icon-baidu2"></icon>百度百科</view> -->
-      <!-- <view class="go_baidu"><web-view src="{{item.baike_info.baike_url}}">去百度看看</web-view></view> -->
-    <!-- </view> -->
-      <!-- <view class="desc_container"><icon class="iconfont icon-miaoshu"></icon>描述：<view class="desc_text" style="min-height:300rpx;"><image class="baike_img" bindtap="showResultImg" data-img="{{item.baike_info.image_url}}" wx:if="{{item.baike_info.image_url}}" src="{{item.baike_info.image_url}}"></image>{{item.baike_info.description}} -->
-    <view class="desc_container">
-      <view class="baike_imgView">
-      <image class="baike_img" bindtap="showResultImg" data-img="{{item.baike_info.image_url}}" wx:if="{{item.baike_info.image_url}}" src="{{item.baike_info.image_url}}"></image>
-      </view>
-      <view class="desc_text" style="min-height:300rpx;"><text>{{item.baike_info.description}}</text></view>
-    </view>
-      </view>
-      <view class="copy" bindtap="copyResult" data-result="{{item}}">复制结果</view>
-    </view>
-      </swiper-item>
-    </block>
-    </swiper>
-  </view>
-  </view>
-
-  <!-- 识别记录 -->
-  <view class="history" wx:if="{{historyShow}}" bindtap="closeLeft">
-    <view class="no_history" wx:if="{{historyLists.length == 0}}">无识别记录</view>
-  <block wx:for="{{historyLists}}" wx:key="index">
-  <view class="history_card">
-    <view class="title_score">
-  <view class="history_title">{{item.title}}</view>
-  <view class="history_score">{{item.score}}</view>
-  </view>
-  <image src="{{item.url}}" class="history_img" bindtap="preViewHistoryImg" data-history="{{item.url}}"></image>
-  <view class="history_time">{{item.time}}</view>
-  </view>
-  </block>
-  </view>
-
-  <view class="left_page {{isRuleTrue ? 'isShow' : 'isHide'}}" wx:if="{{useSwitch}}">
-    <!-- 选择分类 -->
-    <view class="type_title">识别类型</view>
-  <view class="rg_view">
-      <radio-group bindchange="radioChange" class="rg">
-        <label class="rg_label" wx:for="{{items}}" wx:key="index">
-          <view class="rg_icon"><iconfont class="rg_iconfont" name="{{item.iconName}}"/><text style="color:{{item.textColor}}">{{item.name}}</text></view>
-          <view class="radio_cate">
-            <radio class="rg_radio" value="{{item.value}}" checked="{{item.checked}}"/>
-          </view>
-        </label>
-      </radio-group>
-    </view>
-    <view class="search_sum" bindtap="showHistory"><iconfont class="rg_iconfont" name="lishi2"/><text>识别记录</text><view class="search_num" wx:if="{{historyNum > 0}}">{{historyNum}}</view></view>
-    <view class="feed_back" bindtap="openFeedBack"><iconfont class="rg_iconfont" name="dengpao"/><text>反馈</text></view>
-  </view>
-  <view class="fixed_bottom">
-    <view class="more {{moreTap ? 'moreStyle' : ''}}" bindtap="openLeftPage"><icon class="iconfont icon-gengduo"></icon></view>
-    <view class="camera {{cameraTap ? 'cameraStyle' : ''}}" bindtap="upLoad" data-type="camera"><icon class="iconfont icon-xiangji"></icon></view>
-    <view class="photo {{photoTap ? 'photoStyle' : ''}}" bindtap="upLoad" data-type="album"><icon class="iconfont icon-xiangce"></icon></view>
-  </view>
-  <view class="goBack" wx:if="{{picFilePath || historyShow}}" bindtap="goBackIndex"><icon class="iconfont icon-fanhui"></icon></view>
-  <avatar id="avatar"></avatar>
-  <canvas canvas-id="canvas" style="width:{{cWidth}}px;height:{{cHeight}}px;position: absolute;left:-1000px;top:-1000px;"></canvas>
+  <!-- 更多功能悬浮框 -->
+  <morefunc></morefunc>
 </view>

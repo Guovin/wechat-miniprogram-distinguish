@@ -1,7 +1,8 @@
 /**index.wxss**/
 .container{
   height:100vh;
-  background-color:#EEEEEE;
+  background-color:rgb(245, 221, 242);
+  overflow-y: hidden;
 }
 
 .pic_container{
@@ -29,38 +30,26 @@
   padding-bottom: 90rpx;
 }
 
-.fixed_bottom{
-  position: fixed;
-  z-index: 999;
-  display: flex;
-  justify-content: space-between;
-  bottom: 0;
-  height: 8%;
-  width: 100%;
-  background: #F7F7F7;
-}
-
-.more,.camera,.photo{
-  width: 20%;
-  text-align: center;
-  position: relative;
-  color:rgba(0,0,0,.8)
+@keyframes moreRevolve{
+  to{
+    transform: rotate(90deg);
+  }
 }
 
 .more{
-  left:40rpx;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  position: fixed;
+  color:rgb(75, 73, 73);
+  z-index:9999;
+  right:60rpx;
+  bottom:110rpx;
+  line-height:100rpx;
 }
 
-.photo{
-  right:40rpx;
-}
-
-.fixed_bottom .iconfont{
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size: 60rpx;
+.more .iconfont{
+  font-size: 40px;
 }
 
 .left_page{
@@ -92,25 +81,6 @@
   display:flex;
   justify-content: left;
   margin:30rpx auto 30rpx 15rpx;
-}
-
-.rg_iconfont{
-  position: relative;
-  top:5rpx;
-}
-
-.feed_back{
-  display:flex;
-  justify-content: left;
-  padding:15rpx;
-  margin-top: 100%;
-  border-top: 2rpx solid rgba(0,0,0,.1);
-  border-bottom: 2rpx solid rgba(0,0,0,.1);
-}
-
-.feed_back text{
-  padding-left: 10rpx;
-  font-size:31rpx;
 }
 
 .rg_icon text{
@@ -160,8 +130,10 @@ radio .wx-radio-input {
   animation-fill-mode:forwards;
 }
 
-.moreStyle,.cameraStyle,.photoStyle{
-  color:green;
+.moreStyle{
+  color:rgb(90, 190, 90);
+  animation:moreRevolve .5s;
+  animation-fill-mode: forwards;
 }
 
 .icon-sousuo1{
@@ -310,40 +282,104 @@ radio .wx-radio-input {
   height: 100%;
 }
 
-.search_sum{
-  display:flex;
-  justify-content: left;
-  padding:15rpx;
-  margin-top: 50%;
-  border-top: 2rpx solid rgba(0,0,0,.1);
-  border-bottom: 2rpx solid rgba(0,0,0,.1);
-}
-
-.search_num{
-  width: 35rpx;
-  height: 35rpx;
-  border-radius:50%;
-  background-color:rgb(209, 27, 27);
-  position: relative;
-  text-align: center;
-  line-height: 35rpx;
-  top:-8rpx;
-  right:-8rpx;
-  font-size:25rpx;
-  color:white;
-
-}
-
-.index_page{
+.cate_page{
   width: 100%;
   height:100%;
-  background-color: #EEEEEE;
+  background-color:rgb(245, 221, 242);
+  padding-top: 15%;
+  position: relative;
 }
 
-.index_card{
-  width: 95%;
+.cate_card{
+  width: 49%;
   height: 100%;
-  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 1px 10px rgba(0,0,0,.1);
+  position: relative;
+}
+
+.cate_item{
+  height:80px;
+  width: 80px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.advance_item{
+  height:120px;
+  width: 120px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.cate_text{
+  width: 90%;
+  text-align:center;
+  font-weight: bold;
+  font-size: 31rpx;
+  color:rgb(83, 83, 83);
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.advance_text{
+  width: 90%;
+  text-align:center;
+  font-weight: bold;
+  font-size: 40rpx;
+  color:rgb(83, 83, 83);
+  position: absolute;
+  bottom: 3%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.between_view{
+  display:flex;
+  height: 20%;
+  width: 70%;
+  margin: 15rpx auto;
+  justify-content: space-between;
+}
+
+.between_advance{
+  display:flex;
+  height: 25%;
+  width: 70%;
+  margin: 15rpx auto;
+  justify-content: space-between;
+}
+
+.advance_card{
+  background-color:rgb(190, 213, 243);
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+  box-shadow: 0 1px 10px rgba(0,0,0,.1);
+  position: relative;
+}
+
+.plant_card{
+  background-color:rgb(202, 248, 206)
+}
+
+.animal_card{
+  background-color:rgb(241, 216, 184)
+}
+
+.redWine_card{
+  background-color:rgb(241, 197, 176)
+}
+
+.dishs_card{
+  background-color:rgb(241, 232, 179)
 }
 
 .goBack{
@@ -360,74 +396,6 @@ radio .wx-radio-input {
 .icon-fanhui{
   font-size: 80rpx;
   color:grey;
-}
-
-@keyframes revolve{
-  25%{
-    transform: rotate(90deg);
-  }
-  50%{
-    transform: rotate(0deg);
-  }
-  75%{
-    transform: rotate(-90deg);
-  }
-  100%{
-    transform: rotate(0deg);
-  }
-}
-
-.index_imgContainer{
-  width: 300rpx;
-  height: 300rpx;
-  margin: 20rpx auto 0 auto;
-  border-radius: 50%;
-  animation:revolve 20s infinite linear;
-  box-shadow: 0 1px 10px rgba(0,0,0,.15);
-}
-
-.index_img{
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-
-.index_content{
-  position: relative;
-  width: 95%;
-  height: 650rpx;
-  margin:10rpx auto;
-  padding-top:15rpx;
-  border-radius: 10rpx;
-  box-shadow: 0 1px 10px rgba(0,0,0,.3);
-}
-
-.index_title{
-  text-align: center;
-  font-size: 35rpx;
-  font-weight: bold;
-}
-
-.index_text{
-  width: 90%;
-  margin: 15rpx auto;
-  text-align: center;
-  font-size: 28rpx;
-  text-align: justify;
-}
-
-.index_text text{
-  border-bottom: solid 1px rgba(0,0,0,.5);
-  padding-bottom: 6rpx;
-  line-height: 50rpx;
-}
-
-.go_detail{
-  font-size: 25rpx;
-  color: rgb(30, 111, 218);
-  position: absolute;
-  bottom: 50rpx;
-  right: 35rpx;
 }
 
 @keyframes cardIn{
@@ -526,10 +494,30 @@ radio .wx-radio-input {
   left: 10rpx;
 }
 
+.logo{
+  height: 70rpx;
+  width: 190rpx;
+  line-height: 70rpx;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo_text{
+  font-size: 30rpx;
+  color:rgb(82, 82, 82)
+}
+
 /* 暗黑模式下应用的样式 */
 @media (prefers-color-scheme: dark) {
-  .container,.index_page,.result_container,.history{
+  .container,.cate_page,.result_container,.history{
     background-color:#111111;
+  }
+  .cate_text,.advance_text{
+    color:rgb(68, 68, 68);
   }
   .fixed_bottom{
     background: rgba(0,0,0,0.9);
@@ -537,7 +525,7 @@ radio .wx-radio-input {
   .more,.camera,.photo{
     color:grey;
   }
-  .moreStyle,.cameraStyle,.photoStyle{
+  .moreStyle{
     color:green;
   }
   .left_page{

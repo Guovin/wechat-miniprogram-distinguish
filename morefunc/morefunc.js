@@ -1,4 +1,4 @@
-// components/avatar.js
+// moreFunc/morefunc.js
 import WxValidate from '../utils/WxValidate.js'
 Page({
 
@@ -6,6 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 更多悬浮框点击
+    moreTap:false,
+
     // 反馈对话框是否显示
     dialogFormVisible: false,
     // 反馈表单
@@ -23,7 +26,85 @@ Page({
     viewInto: '', //对话框消息要滚动到的位置
     textarea_focus: false, //textarea获取焦点
     dialogScrollHeight:'250rpx', //对话框滚动框高度
+
+    // 识别记录缓存
+    historyLists: [],
+    //当前存在识别记录未查看的数量
+    historyNum:0
   },
+
+  // 显示识别记录
+  showHistory(){
+    // 读取缓存记录
+    let info = wx.getStorageInfoSync()
+    let keyLists = info.keys
+    let historyLists = []
+    keyLists.forEach(item => {
+      // 区分反馈缓存
+      if(item.indexOf("https://") == -1 && item.indexOf("historySaw") == -1){
+        let history = {}
+        let keys = item.split(";")
+        history.title = keys[0]
+        history.time = keys[1]
+        history.score = keys[2]
+        let url  = wx.getStorageSync(item)
+        history.url = url
+        historyLists.push(history)
+      }
+    })
+    this.setData({historyLists:historyLists,historyShow:true,moreTap:false})
+    // 清空未查看的识别结果数
+    wx.setStorage({
+      data: 0,
+      key: 'historySaw',
+    })
+    // 跳转识别结果记录页面
+    wx.navigateTo({
+      url: '../history/history',
+      success(res){
+        res.eventChannel.emit('sendHistory',{historyLists:historyLists})
+      }
+    })
+  },
+ 
+  // 更多按钮点击事件
+  openLeftPage() {
+    let that = this
+    if(that.data.moreTap){
+      that.setData({moreTap:false})
+    }else{
+      // 计算识别历史数量
+      that.countHistoryNum()
+      that.setData({moreTap:true})
+    }
+  },
+
+  // 计算当前未查看的识别记录数量
+  countHistoryNum(){
+    let num = 0
+    let saw = wx.getStorageSync('historySaw')
+    if(saw == 0 || saw == null){
+      // 缓存未查看的识别结果数
+      wx.setStorage({
+        data: num,
+        key: 'historySaw',
+      })
+      this.setData({historyNum:num})
+    }
+    else{
+      num = saw
+      this.setData({historyNum:num})
+    }
+  },
+
+  // 调用反馈组件事件
+  openFeedBack(){
+    if(this.data.moreTap){
+      this.showDialog()
+      this.setData({moreTap:false})
+    }
+  },
+
 
   // 点击区域textarea获取焦点
   focusOn(){
@@ -190,7 +271,7 @@ Page({
         const error = that.WxValidate.errorList[0]
         wx.showToast({
           title: error.msg,
-          icon: 'error'
+          icon: 'none'
         })
         return that.setData({loading:false})
       }
@@ -251,12 +332,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
   },
 
   /**

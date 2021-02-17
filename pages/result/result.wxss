@@ -1,0 +1,198 @@
+/* pages/result/result.wxss */
+.pic_container{
+  width: 300rpx;
+  height: 300rpx;
+  margin: 0 auto;
+  box-shadow: 0 1px 10px rgba(0,0,0,.1);
+  border-radius: 50%;
+}
+
+.picture{
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 50%;
+}
+
+.result{
+  margin-top:15rpx;
+  background-color:rgb(245, 221, 242);
+}
+
+.result_container{
+  height:100vh;
+  background-color:rgb(245, 221, 242);
+  padding-top: 20rpx;
+}
+
+.icon-sousuo1{
+  padding-right:8rpx;
+}
+
+.result_num{
+  width: 88%;
+  margin: 0 auto;
+  font-size: 25rpx;
+  font-weight: bold;
+  color:grey;
+}
+
+.num_text{
+  color:black;
+}
+
+.slider_tip{
+  width: 88%;
+  margin: 30rpx auto 0 auto;
+  text-align: center;
+  font-size: 25rpx;
+  color: grey;
+}
+
+.result_card{
+  width: 88%;
+  margin: 10rpx auto 0 auto;
+  border-radius: 10rpx;
+  box-shadow: 0 1px 10px rgba(0,0,0,.1);
+  background-color: rgb(247,247,234);
+}
+
+.info_container{
+  padding: 10rpx;
+  position: relative;
+  min-height:100rpx;
+}
+
+.info_container icon{
+  padding-right: 8rpx;
+}
+
+.score{
+  color: rgb(170, 57, 57);
+  font-weight: bold;
+  font-size: 25rpx;
+}
+
+.base_info{
+  display:flex;
+  justify-content:left;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.score_paint{
+  position: absolute;
+  /* transform: rotate(23deg); */
+  right:10rpx;
+  top: 8rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  border:5rpx solid rgb(156, 100, 100);
+  text-align:center;
+  line-height: 100rpx;
+}
+
+.title_paint{
+  font-weight: bold;
+  font-size: 25rpx;
+  color:grey;
+}
+
+.title_icon{
+  font-weight: bold;
+  font-size: 30rpx;
+  min-width: 130rpx;
+  position: relative;
+  top: -11rpx;
+  color:grey;
+}
+
+.baidu_container{
+  margin:0 auto;
+  border-top:2rpx solid rgba(0,0,0,.1);
+}
+
+.baike_imgView{
+  margin: 10rpx auto;
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.baike_img{
+  width: 300rpx;
+  height: 300rpx;
+  box-shadow:0 1px 10px rgba(0,0,0,.15);
+  border-radius: 10rpx;
+
+}
+
+.desc_container{
+  padding-left: 10rpx;
+}
+
+.desc_text{
+  font-size: 26rpx;
+  text-align: justify;
+  padding: 0 10rpx 20rpx 10rpx;
+  min-height: 0;
+}
+
+.desc_text text{
+  border-bottom: solid 1px rgba(0,0,0,.5);
+  padding-bottom: 6rpx;
+  line-height: 50rpx;
+}
+
+.baidu_header{
+  display: flex;
+  justify-content: space-between;
+  height: 60rpx;
+}
+
+.baidu_title{
+  font-weight: bold;
+  line-height: 60rpx;
+  padding-left: 10rpx;
+}
+
+.icon-baidu2,.icon-miaoshu{
+  padding-right: 8rpx;
+}
+
+.go_baidu{
+  line-height: 60rpx;
+  font-size: 25rpx;
+  color: rgba(30, 76, 226, 0.7);
+  padding-right: 5rpx;
+}
+
+.copy{
+  position: relative;
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  left: 82%;
+  top:0;
+  font-size: 25rpx;
+  color:rgb(52, 130, 233)
+}
+
+/* 暗黑模式下应用的样式 */
+@media (prefers-color-scheme: dark) {
+  .result_container,.result{
+    background-color:#111111;
+  }
+  .result_card{
+    background-color: rgba(0,0,0);
+  }
+  .baidu_container{
+    border-top:2rpx solid rgba(255,255,255,.1)
+  }
+  .desc_text text{
+    border-bottom: solid 1px rgba(70, 69, 69);
+  }
+  .num_text{
+    color:white;
+  }
+}

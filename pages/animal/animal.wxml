@@ -1,0 +1,24 @@
+<!--pages/advance/advance.wxml-->
+<view class="index_page" bindtap="pauseAutoPlay">
+    <!-- 首页卡片 -->
+    <view class="index_card">
+      <!-- 滑块图片容器 -->
+      <swiper autoplay="{{IndexAutoPlay}}" interval="3000" bindchange="indexSwiperChange" current="0" style="height:1050rpx;">
+        <block wx:for="{{swiper_content}}" wx:key="index">
+        <swiper-item>
+      <view class="index_imgContainer">
+        <image class="index_img" src="{{item.image_url}}"></image>
+      </view>
+      <!-- 内容滑块-->
+      <view class="index_content">
+        <view class="index_title">{{item.index_title}}</view>
+        <view class="index_text"><text>{{item.index_content}}</text></view>
+        <text class="go_detail" bindtap="goDetail">相关识别</text>
+      </view>
+    </swiper-item>
+       </block>
+       </swiper>
+      <button type="primary" class="recognize" bindtap="upLoad">开始识别</button>
+    </view>
+    <canvas canvas-id="canvas" style="width:{{cWidth}}px;height:{{cHeight}}px;position: absolute;left:-1000px;top:-1000px;"></canvas>
+</view>

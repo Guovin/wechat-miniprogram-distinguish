@@ -1,4 +1,5 @@
 {
-  "usingComponents": {"avatar":"/avatar/avatar"},
-  "enablePullDownRefresh": true
+  "usingComponents": {
+    "morefunc":"/morefunc/morefunc"
+  }
 }

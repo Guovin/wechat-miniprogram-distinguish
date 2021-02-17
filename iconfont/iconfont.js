@@ -1,6 +1,6 @@
 Component({
   properties: {
-    // lishi2 | fanhui | chenggong | youjian | dengpao | gengduo | hongmoshibie | dongwutubiao_gou | shiwu1 | hua1 | xiangce | xiangji | guanjianci | fenleishouye | suobanxin | dongwuxian | tupian | miaoshu | chazhaoxiangsi | wannengsousuo | hongjiu | hua | shiwu- | sousuo | wine | chidacan | jia | sousuo1 | shibie | baidu | baidu1 | baidu2 | shanchu1 | shibie1 | shibiezhunque
+    // more | 2 | lishi2 | chenggong | youjian | dengpao | hongmoshibie | dongwutubiao_gou | shiwu1 | hua1 | guanjianci | fenleishouye | wine | sousuo1
     name: {
       type: String,
     },
