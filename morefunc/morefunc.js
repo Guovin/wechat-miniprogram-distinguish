@@ -1,10 +1,28 @@
 // moreFunc/morefunc.js
 import WxValidate from '../utils/WxValidate.js'
 Component({
+  // 暴露样式
+  externalClasses: ['more_container'],
+  
+  properties:{
+    firstPage:Boolean
+  },
+  // 监听属性-判断是否是首页，显示提示
+  observers:{
+    'isInit':function(val){
+      if(val == ''){
+        return
+      }else{
+        return this.setData({firstPage:val})
+      }
+    }
+  },
   /**
    * 页面的初始数据
    */
   data: {
+    // 首页判断
+    firstPage:false,
     // 初始化
     isInit:true,
     // 更多悬浮框点击

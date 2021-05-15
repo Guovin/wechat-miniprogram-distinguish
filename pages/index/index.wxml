@@ -38,5 +38,5 @@
   </view>
 
   <!-- 更多功能悬浮框 -->
-  <morefunc></morefunc>
+  <morefunc more_container="moreFunc" firstPage="{{firstPage}}"></morefunc>
 </view>

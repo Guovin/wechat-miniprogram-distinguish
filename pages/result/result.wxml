@@ -41,7 +41,6 @@
     </block>
     </swiper>
   </view>
-
-  <!-- 识别跳转 -->
-  
   </view>
+<!-- 更多功能悬浮框 -->
+<morefunc more_container="moreFunc"></morefunc>

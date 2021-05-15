@@ -5,6 +5,15 @@
   overflow-y: hidden;
 }
 
+.moreFunc {
+  width: 230rpx;
+  height: 200rpx;
+  position: fixed;
+  z-index:999;
+  right:60rpx;
+  bottom:100rpx;
+}
+
 @keyframes tipBoxHide{
   80%{
     opacity: 1;

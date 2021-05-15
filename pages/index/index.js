@@ -1,7 +1,8 @@
 // index.js
 Page({
   data: {
-    
+    // 首页初始化
+    firstPage:true
   },
 
   // 点击跳转通用识别

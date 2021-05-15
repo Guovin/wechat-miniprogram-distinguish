@@ -3,19 +3,31 @@
 <view class="more_container">
   <!-- <button open-type="contact">客服</button> -->
   <!-- 点击提示 -->
-  <view class="tip {{!moreTap&&tipShow ? 'tipStyle' : 'tipHide'}}">
-    <view class="tip_text">点击这里查看更多</view>
+  <view class="tip {{!moreTap&&tipShow&&firstPage ? 'tipStyle' : 'tipHide'}}">
+    <view class="tip_text">点击我试试</view>
     <view class="tip_dic"></view>
   </view>
   <!-- 弹出功能 -->
-    <view class="more {{moreTap ? 'moreStyle' : isInit?'':'moreClose'}}" bindtap="openLeftPage">
-      <iconfont name="more"></iconfont>
+    <view class="cube_wrap" bindtap="openLeftPage">
+    <view class="cube cubeSpin">
+      <view class="front {{moreTap ? 'frontOpen' : isInit?'':'frontClose'}}"></view>
+      <view class="back {{moreTap ? 'backOpen' : isInit?'':'backClose'}}" ></view>
+      <view class="top {{moreTap ? 'topOpen' : isInit?'':'topClose'}}"></view>
+      <view class="bottom {{moreTap ? 'bottomOpen' : isInit?'':'bottomClose'}}"></view>
+      <view class="left {{moreTap ? 'leftOpen' : isInit?'':'leftClose'}}"></view>
+      <view class="right {{moreTap ? 'rightOpen' : isInit?'':'rightClose'}}"></view>
     </view>
-    <view class="history_container {{moreTap ? 'history_animation' : isInit?'':'history_close'}}">
+    <view class="ball_box">
+    <view class="ball1 {{moreTap ? 'ballHide' : isInit?'':'ballClose'}}"><iconfont class="rg_iconfont" name="lishi2"/></view>
+    <view class="ball2 {{moreTap ? 'ballHide' : isInit?'':'ballClose'}}"><iconfont class="rg_iconfont" name="dengpao"/></view>
+    </view>
+  </view>
+
+    <view class="history_container {{moreTap ? 'history_animation' : isInit?'':'historyClose'}}">
     <view class="search_sum" bindtap="showHistory"><iconfont class="rg_iconfont" name="lishi2"/></view>
     <view class="search_num" wx:if="{{historyNum > 0}}">{{historyNum}}</view>
     </view>
-    <view class="feed_back {{moreTap ? 'feed_animation' : isInit?'':'feed_close'}}" bindtap="openFeedBack"><iconfont class="rg_iconfont" name="dengpao"/></view>
+    <view class="feed_back {{moreTap ? 'feed_animation' : isInit?'':'feedClose'}}" bindtap="openFeedBack"><iconfont class="rg_iconfont" name="dengpao"/></view>
 </view>
 
 <!-- 授权提示对话框 -->

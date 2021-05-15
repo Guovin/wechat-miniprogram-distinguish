@@ -32,8 +32,8 @@
   height: 200rpx;
   position: fixed;
   z-index:999;
-  right:0rpx;
-  bottom:30rpx;
+  right:60rpx;
+  bottom:100rpx;
 }
 
 .tip{
@@ -45,7 +45,7 @@
 
 .tip_text{
   background-color: rgb(241, 184, 234);
-  font-size: 20rpx;
+  font-size: 23rpx;
   text-align: center;
   line-height: 50rpx;
   color:#fff;
@@ -66,6 +66,238 @@
 
 .tipHide{
   visibility: hidden;
+}
+
+.cube_wrap{
+  perspective: 800rpx;
+  perspective-origin: 50% 180rpx;
+  width:60rpx;
+  margin: 30rpx auto;
+}
+
+.cube{
+  position: relative;
+  width: 60rpx;
+  transform-style: preserve-3d;
+}
+
+@keyframes spin {
+	from { transform: rotateY(0); }
+	to { transform: rotateY(360deg); }
+}
+
+.cubeSpin{
+  animation: spin 5s infinite linear;
+}
+
+.cube view{
+  position:absolute;
+  width:60rpx;
+  height:60rpx;
+  background-color: rgba(114,240,232,.3);
+  text-align: center;
+}
+
+
+.right {
+	transform: rotateY(-270deg) translateX(30rpx);
+	transform-origin: top right;
+}
+.left {
+	transform: rotateY(270deg) translateX(-30rpx);
+	transform-origin: center left;
+}
+.top {
+	transform: rotateX(-90deg) translateY(-30rpx);
+	transform-origin: top center;
+}
+.bottom {
+	transform: rotateX(90deg) translateY(30rpx);
+	transform-origin: bottom center;
+}
+.front {
+	transform: translateZ(30rpx);
+}
+
+.back {
+	transform: translateZ(-30rpx) rotateY(180deg);
+}
+
+.ball_box{
+  animation: spin 5s infinite linear;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.ball1{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  transform:translateZ(5rpx)
+}
+
+.ball2{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  transform:translateZ(-5rpx)
+}
+
+@keyframes topOpen{
+  to{
+    transform: rotateX(-90deg) translateY(-30rpx) translateZ(-80rpx);
+  }
+}
+
+@keyframes leftOpen{
+  to{
+    transform: rotateY(270deg) translateX(-30rpx) translateZ(80rpx);
+  }
+}
+
+@keyframes rightOpen{
+  to{
+    transform: rotateY(-270deg) translateX(30rpx) translateZ(80rpx);
+  }
+}
+
+@keyframes bottomOpen{
+  to{
+    transform: rotateX(90deg) translateY(30rpx) translateZ(-80rpx);
+  }
+}
+
+@keyframes frontOpen{
+  to{
+    transform:translateZ(105rpx)
+  }
+}
+
+@keyframes backOpen{
+  to{
+    transform: rotateY(180deg) translateZ(105rpx);
+  }
+}
+
+@keyframes ballHide{
+  to{
+    opacity: 0;
+  }
+}
+
+.topOpen{
+  animation: topOpen .5s forwards;
+}
+
+.leftOpen{
+  animation: leftOpen .5s forwards;
+}
+
+.rightOpen{
+  animation: rightOpen .5s forwards;
+}
+
+.bottomOpen{
+  animation: bottomOpen .5s forwards;
+}
+
+.frontOpen{
+  animation: frontOpen .5s forwards;
+}
+
+.backOpen{
+  animation: backOpen .5s forwards;
+}
+
+.ballHide{
+  animation: ballHide .5s forwards;
+}
+
+@keyframes topClose{
+  from{
+    transform: rotateX(-90deg) translateY(-30rpx) translateZ(-80rpx);
+  }
+  to{
+    transform: rotateX(-90deg) translateY(-30rpx) translateZ(0);
+  }
+}
+
+@keyframes leftClose{
+  from{
+    transform: rotateY(270deg) translateX(-30rpx) translateZ(80rpx);
+  }
+  to{
+    transform: rotateY(270deg) translateX(-30rpx) translateZ(0);
+  }
+}
+
+@keyframes rightClose{
+  from{
+    transform: rotateY(-270deg) translateX(30rpx) translateZ(80rpx);
+  }
+  to{
+    transform: rotateY(-270deg) translateX(30rpx) translateZ(0);
+  }
+}
+
+@keyframes bottomClose{
+  from{
+    transform: rotateX(90deg) translateY(30rpx) translateZ(-80rpx);
+  }
+  to{
+    transform: rotateX(90deg) translateY(30rpx) translateZ(0);
+  }
+}
+
+@keyframes frontClose{
+  from{
+    transform:translateZ(105rpx)
+  }
+  to{
+    transform: translateZ(30rpx);
+  }
+}
+
+@keyframes backClose{
+  from{
+    transform: rotateY(180deg) translateZ(105rpx);
+  }
+  to{
+    transform: rotateY(180deg) translateZ(30rpx);
+  }
+}
+
+@keyframes ballClose{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.leftClose{
+  animation: leftClose .5s forwards;
+}
+.rightClose{
+  animation: rightClose .5s forwards;
+}
+.frontClose{
+  animation: frontClose .5s forwards;
+}
+.topClose{
+  animation: topClose .5s forwards;
+}
+.bottomClose{
+  animation: bottomClose .5s forwards;
+}
+.backClose{
+  animation: backClose .5s forwards;
+}
+.ballClose{
+  animation: ballClose .5s forwards;
 }
 
 .more{
@@ -91,7 +323,7 @@
 @keyframes feedBack{
   to{
     opacity: 1;
-    transform: translate(-65rpx,-65rpx);
+    transform: translateX(-60rpx);
     visibility: visible;
   }
 }
@@ -99,11 +331,12 @@
 @keyframes feed_close{
   from{
     opacity: 1;
-    transform: translate(-65rpx,-65rpx);
+    transform: translateX(-60rpx);
+    visibility: visible;
   }
   to{
     opacity: 0;
-    transform: translate(0rpx,0rpx);
+    transform: translateX(0rpx);
     visibility: hidden;
   }
 }
@@ -113,18 +346,17 @@
   animation-fill-mode: forwards;
 }
 
-.feed_close{
-  animation:feed_close .5s;
-  animation-fill-mode: forwards;
+.feedClose{
+  animation:feed_close .5s forwards;
 }
 
 .feed_back{
   opacity: 0;
   visibility: hidden;
-  position: fixed;
+  position: absolute;
   z-index: 9999;
   right:80rpx;
-  bottom:110rpx;
+  bottom:70rpx;
   border-radius: 50%;
   border:2rpx solid rgba(0,0,0,.3);
 }
@@ -132,7 +364,7 @@
 @keyframes historyMove{
   to{
     opacity: 1;
-    transform: translate(50rpx,-65rpx);
+    transform: translateX(60rpx);
     visibility: visible;
   }
 }
@@ -140,11 +372,12 @@
 @keyframes history_close{
   from{
     opacity: 1;
-    transform: translate(50rpx,-65rpx);
+    transform: translateX(60rpx);
+    visibility: visible;
   }
   to{
     opacity: 0;
-    transform: translate(0rpx,0rpx);
+    transform: translateX(0rpx);
     visibility: hidden;
   }
 }
@@ -154,18 +387,17 @@
   animation-fill-mode: forwards;
 }
 
-.history_close{
-  animation:history_close .5s;
-  animation-fill-mode: forwards;
+.historyClose{
+  animation:history_close .5s forwards;
 }
 
 .history_container{
   opacity:0;
   visibility: hidden;
-  position: fixed;
+  position: absolute;
   z-index: 9999;
   right:80rpx;
-  bottom:110rpx;
+  bottom:70rpx;
   line-height: 60rpx;
 }
 
