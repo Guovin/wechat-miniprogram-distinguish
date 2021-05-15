@@ -16,9 +16,13 @@
       <view class="info_container">
       <view class="score_paint" wx:if="{{item.score}}"><text class="score">{{item.score}}</text></view>
       <view class="score_paint" wx:if="{{item.probability}}"><text class="score">{{item.probability}}</text></view>
-      <view class="base_info" wx:if="{{item.keyword}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view>{{item.keyword}}</view></view>
-      <view class="base_info" wx:if="{{item.name}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view>{{item.name}}</view></view>
-      <view class="base_info" wx:if="{{item.wineNameCn}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view>{{item.wineNameCn}}</view></view>
+      <view class="base_info" wx:if="{{item.keyword}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view style="color:rgb(131, 180, 245)">{{item.keyword}}</view></view>
+      <view class="base_info" wx:if="{{item.name}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view>
+      <view wx:if="{{selectItem == 'plant'}}" style="color:rgb(145, 240, 153)">{{item.name}}</view>
+      <view wx:if="{{selectItem == 'animal'}}" style="color:rgb(245, 193, 126)">{{item.name}}</view>
+      <view wx:if="{{selectItem == 'dishs'}}" style="color:rgb(230, 214, 123)">{{item.name}}</view>
+    </view>
+      <view class="base_info" wx:if="{{item.wineNameCn}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>名称：</view><view style="color:rgb(241, 166, 132)">{{item.wineNameCn}}</view></view>
       <view class="base_info" wx:if="{{item.root}}"><view class="title_icon"><icon class="iconfont icon-fenleishouye"></icon>分类：</view>{{item.root}}</view>
       <view class="base_info" wx:if="{{item.has_calorie}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>卡路里：</view>有</view>
       <view class="base_info" wx:if="{{item.has_calorie == false}}"><view class="title_icon"><icon class="iconfont icon-guanjianci"></icon>卡路里：</view>无</view>

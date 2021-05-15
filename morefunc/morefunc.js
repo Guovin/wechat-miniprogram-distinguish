@@ -1,13 +1,15 @@
 // moreFunc/morefunc.js
 import WxValidate from '../utils/WxValidate.js'
-Page({
-
+Component({
   /**
    * 页面的初始数据
    */
   data: {
+    // 初始化
+    isInit:true,
     // 更多悬浮框点击
     moreTap:false,
+    tipShow:true,
 
     // 反馈对话框是否显示
     dialogFormVisible: false,
@@ -33,6 +35,7 @@ Page({
     historyNum:0
   },
 
+  methods:{
   // 显示识别记录
   showHistory(){
     // 读取缓存记录
@@ -71,11 +74,11 @@ Page({
   openLeftPage() {
     let that = this
     if(that.data.moreTap){
-      that.setData({moreTap:false})
+      that.setData({moreTap:false,isInit:false})
     }else{
       // 计算识别历史数量
       that.countHistoryNum()
-      that.setData({moreTap:true})
+      that.setData({moreTap:true,tipShow:false,isInit:false})
     }
   },
 
@@ -327,60 +330,10 @@ Page({
     // 实例化验证方法对象
     this.WxValidate = new WxValidate(rules,messages)
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+},
+  lifetimes:{
+    attached:function(){
+      
+    }
   }
 })

@@ -1,30 +1,90 @@
 /* moreFunc/morefunc.wxss */
-@keyframes moreRevolve{
+@keyframes moreShow{
   to{
     transform: scale(1,1.5) rotate(-60deg);
   }
 }
 
-.more{
-  width: 80rpx;
-  height: 80rpx;
-  text-align: center;
-  position: fixed;
-  color:rgb(75, 73, 73);
-  z-index:999;
-  right:60rpx;
-  bottom:110rpx;
-  line-height:100rpx;
-  transform: rotate(-60deg);
+@keyframes moreHide{
+  from{
+    transform: scale(1,1.5) rotate(-60deg);
+  }
+  to{
+    transform: scale(1,1) rotate(60deg);
+  }
 }
 
-.more .iconfont{
-  font-size: 40px;
+@keyframes tipStyle{
+  80%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+.tipStyle{
+  animation: tipStyle 8s forwards;
+}
+
+.more_container{
+  width: 230rpx;
+  height: 200rpx;
+  position: fixed;
+  z-index:999;
+  right:0rpx;
+  bottom:30rpx;
+}
+
+.tip{
+  width: 190rpx;
+  height: 50rpx;
+  z-index: 999;
+  margin: 0 auto;
+}
+
+.tip_text{
+  background-color: rgb(50, 50, 50);
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 50rpx;
+  color:rgba(231, 224, 224, 0.959);
+  border-radius: 8rpx;
+}
+
+.tip_dic{
+  width: 20rpx;
+  height: 20rpx;
+  background-color: rgb(50, 50, 50);
+  border-radius:3rpx;
+  position: relative;
+  left: 50%;
+  translate: -50%;
+  top: -11rpx;
+  transform:rotate(45deg)
+}
+
+.tipHide{
+  visibility: hidden;
+}
+
+.more{
+  width:40px;
+  height:40px;
+  text-align: center;
+  color:rgb(153, 102, 102);
+  z-index:999;
+  margin: 20rpx auto;
+  /* transform: rotate(-60deg); */
 }
 
 .moreStyle{
-  color:rgb(90, 190, 90);
-  animation:moreRevolve .8s;
+  animation:moreShow .8s;
+  animation-fill-mode: forwards;
+}
+
+.moreClose{
+  animation:moreHide .8s;
   animation-fill-mode: forwards;
 }
 
@@ -32,6 +92,19 @@
   to{
     opacity: 1;
     transform: translate(-65rpx,-65rpx);
+    visibility: visible;
+  }
+}
+
+@keyframes feed_close{
+  from{
+    opacity: 1;
+    transform: translate(-65rpx,-65rpx);
+  }
+  to{
+    opacity: 0;
+    transform: translate(0rpx,0rpx);
+    visibility: hidden;
   }
 }
 
@@ -40,8 +113,14 @@
   animation-fill-mode: forwards;
 }
 
+.feed_close{
+  animation:feed_close .5s;
+  animation-fill-mode: forwards;
+}
+
 .feed_back{
   opacity: 0;
+  visibility: hidden;
   position: fixed;
   z-index: 9999;
   right:80rpx;
@@ -53,7 +132,20 @@
 @keyframes historyMove{
   to{
     opacity: 1;
-    transform: translate(-65rpx,65rpx);
+    transform: translate(50rpx,-65rpx);
+    visibility: visible;
+  }
+}
+
+@keyframes history_close{
+  from{
+    opacity: 1;
+    transform: translate(50rpx,-65rpx);
+  }
+  to{
+    opacity: 0;
+    transform: translate(0rpx,0rpx);
+    visibility: hidden;
   }
 }
 
@@ -62,8 +154,14 @@
   animation-fill-mode: forwards;
 }
 
+.history_close{
+  animation:history_close .5s;
+  animation-fill-mode: forwards;
+}
+
 .history_container{
   opacity:0;
+  visibility: hidden;
   position: fixed;
   z-index: 9999;
   right:80rpx;
@@ -81,11 +179,11 @@
   height: 30rpx;
   border-radius:50%;
   background-color:rgb(209, 27, 27);
-  position: relative;
+  position: absolute;
   text-align: center;
   line-height: 30rpx;
-  top:-60rpx;
-  right:20rpx;
+  top:-10rpx;
+  right:35rpx;
   font-size:25rpx;
   color:white;
 }

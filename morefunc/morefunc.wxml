@@ -1,12 +1,20 @@
 <!--moreFunc/morefunc.wxml-->
 <!-- 更多功能悬浮框 -->
 <view class="more_container">
-    <view class="more {{moreTap ? 'moreStyle' : ''}}" bindtap="openLeftPage"><iconfont name="more"></iconfont></view>
-    <view class="history_container {{moreTap ? 'history_animation' : ''}}" wx:if="{{moreTap}}">
+  <!-- 点击提示 -->
+  <view class="tip {{!moreTap&&tipShow ? 'tipStyle' : 'tipHide'}}">
+    <view class="tip_text">点击这里查看更多</view>
+    <view class="tip_dic"></view>
+  </view>
+  <!-- 弹出功能 -->
+    <view class="more {{moreTap ? 'moreStyle' : isInit?'':'moreClose'}}" bindtap="openLeftPage">
+      <iconfont name="more"></iconfont>
+    </view>
+    <view class="history_container {{moreTap ? 'history_animation' : isInit?'':'history_close'}}">
     <view class="search_sum" bindtap="showHistory"><iconfont class="rg_iconfont" name="lishi2"/></view>
     <view class="search_num" wx:if="{{historyNum > 0}}">{{historyNum}}</view>
     </view>
-    <view class="feed_back {{moreTap ? 'feed_animation' : ''}}" bindtap="openFeedBack" wx:if="{{moreTap}}"><iconfont class="rg_iconfont" name="dengpao"/></view>
+    <view class="feed_back {{moreTap ? 'feed_animation' : isInit?'':'feed_close'}}" bindtap="openFeedBack"><iconfont class="rg_iconfont" name="dengpao"/></view>
 </view>
 
 <!-- 授权提示对话框 -->

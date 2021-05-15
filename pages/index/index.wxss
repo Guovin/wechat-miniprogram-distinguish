@@ -30,27 +30,6 @@
   padding-bottom: 90rpx;
 }
 
-@keyframes moreRevolve{
-  to{
-    transform: rotate(90deg);
-  }
-}
-
-.more{
-  width: 100rpx;
-  height: 100rpx;
-  text-align: center;
-  position: fixed;
-  color:rgb(75, 73, 73);
-  z-index:9999;
-  right:60rpx;
-  bottom:110rpx;
-  line-height:100rpx;
-}
-
-.more .iconfont{
-  font-size: 40px;
-}
 
 .left_page{
   position:fixed;

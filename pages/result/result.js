@@ -83,6 +83,27 @@ Page({
     
   },
 
+  // 时间格式化
+  dateFormat(fmt, date) {
+    let ret;
+    const opt = {
+        "Y+": date.getFullYear().toString(),        // 年
+        "m+": (date.getMonth() + 1).toString(),     // 月
+        "d+": date.getDate().toString(),            // 日
+        "H+": date.getHours().toString(),           // 时
+        "M+": date.getMinutes().toString(),         // 分
+        "S+": date.getSeconds().toString()          // 秒
+        // 有其他格式化字符需求可以继续添加，必须转化成字符串
+    };
+    for (let k in opt) {
+        ret = new RegExp("(" + k + ")").exec(fmt);
+        if (ret) {
+            fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+        };
+    };
+    return fmt;
+},
+
   // 选择图片后加载完成触发
   selectPicOk(){
     let that = this
@@ -98,7 +119,7 @@ Page({
         let url = res.savedFilePath
         // 保存识别记录缓存
         let newDate = new Date() //日期时间
-        let time = newDate.toLocaleString()
+        let time = that.dateFormat("YYYY-mm-dd HH:MM", newDate)
         let title = ''
         let score = ''
         if(newResult.length != 0){

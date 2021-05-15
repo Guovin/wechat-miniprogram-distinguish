@@ -71,14 +71,21 @@ upLoad(){
             sizeType: ['compressed'], //图片大小：压缩图片，第一次
             sourceType: ['album', 'camera'], //图片来源：相册或相机
             success (res) {
+              wx.showLoading({
+                title:'图片处理中'
+              })
               // tempFilePath可以作为img标签的src属性显示图片
               let tempFilePath = res.tempFilePaths[0]
       //         that.setData({picFilePath:tempFilePath})
               let img_size = res.tempFiles[0].size //图片大小--字节单位
               // 如果大于2M则进行压缩
               if(img_size >= 2097152){
-                wx.showLoading({
-                  title: '压缩图片中',
+                wx.hideLoading({
+                  success(){
+                    wx.showLoading({
+                      title: '压缩图片中',
+                    })
+                  }
                 })
               // 对图片进行二次压缩
                 //-----返回选定照片的本地文件路径列表，获取照片信息-----------

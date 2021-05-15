@@ -1,6 +1,9 @@
 <!--pages/history/history.wxml-->
 <!-- 识别记录 -->
-<view class="history" bindtap="closeLeft">
+<view class="history">
+  <view class="clear_box" bindtap="clearAll">
+  <view class="clearAll" wx:if="{{historyLists.length != 0}}">× 清空记录</view>
+  </view>
     <view class="no_history" wx:if="{{historyLists.length == 0}}">无识别记录</view>
   <block wx:for="{{historyLists}}" wx:key="index">
   <view class="history_card">
@@ -9,7 +12,10 @@
   <view class="history_title" wx:if="{{!item.title}}">未知</view>
   <view class="history_score">{{item.score}}</view>
   </view>
+  <view>
   <image src="{{item.url}}" class="history_img" bindtap="preViewHistoryImg" data-history="{{item.url}}"></image>
+  <view class="delete" bindtap="delete" data-storage="{{item}}">×</view>
+  </view>
   <view class="history_time">{{item.time}}</view>
   </view>
   </block>

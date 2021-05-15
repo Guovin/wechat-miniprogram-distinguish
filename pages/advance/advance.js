@@ -26,7 +26,7 @@ Page({
                   {score:'45.16%',root:"植物-莎草科",keyword:"羊胡子草",baike_info:{baike_url:"http://baike.baidu.com/item/%E7%BE%8A%E8%83%A1%E5%AD%90%E8%8D%89/6516148",image_url:"http://imgsrc.baidu.com/baike/pic/item/7af40ad162d9f2d370b7ec2aabec8a136227cc55.jpg",description:"羊胡子草，别名：卵穗苔草，莎草科，生于岩壁上。华南地区、西南地区。为多年生草本，高14至80cm。根状茎粗短。杆密丛生，基部具黑褐色叶鞘。叶基生，无杆生叶；叶片线形，长50至60cm，顶端渐狭成刚毛状，边内卷，具细齿，基部鞘状。"}},
                   {score:'3.97%',root:"植物-灌木",keyword:"棉花产业",baike_info:false}],
 
-                  [{score:'87.43%',root:"植物-蔷薇科",keyword:"草莓",baike_info:{baike_url:"http://baike.baidu.com/item/%E8%8D%89%E8%8E%93/32702",image_url:"https://bkimg.cdn.bcebos.com/pic/faf2b2119313b07ec8e23fdd06d7912396dd8c83",description:"草莓(英文学名：strawberry、拉丁学名：Fragaria × ananassa Duch.)，多年生草本植物。高10-40厘米，茎低于叶或近相等，密被开展黄色柔毛。叶三出，小叶具短柄，质地较厚，倒卵形或菱形，上面深绿色，几无毛，下面淡白绿色，疏生毛，沿脉较密；叶柄密被开展黄色柔毛。聚伞花序，花序下面具一短柄的小叶；花两性；萼片卵形，比副萼片稍长；花瓣白色，近圆形或倒卵椭圆形。聚合果大，宿存萼片直立，紧贴于果实；瘦果尖卵形，光滑。花期4-5月，果期6-7月。原产南美，中国各地及欧洲等地广为栽培。草莓营养价值高，含有多种营养物质 ，且有保健功效。(概述图片参考： )"}},
+                  [{score:'87.43%',root:"植物-蔷薇科",keyword:"草莓",baike_info:{baike_url:"http://baike.baidu.com/item/%E8%8D%89%E8%8E%93/32702",image_url:"https://bkimg.cdn.bcebos.com/pic/faf2b2119313b07ec8e23fdd06d7912396dd8c83",description:"草莓(英文学名：strawberry、拉丁学名：Fragaria × ananassa Duch.)，多年生草本植物。高10-40厘米，茎低于叶或近相等，密被开展黄色柔毛。叶三出，小叶具短柄，质地较厚，倒卵形或菱形，上面深绿色，几无毛，下面淡白绿色，疏生毛，沿脉较密；叶柄密被开展黄色柔毛。聚伞花序，花序下面具一短柄的小叶；花两性；萼片卵形，比副萼片稍长；花瓣白色，近圆形或倒卵椭圆形。聚合果大，宿存萼片直立，紧贴于果实；瘦果尖卵形，光滑。花期4-5月，果期6-7月。原产南美，中国各地及欧洲等地广为栽培。草莓营养价值高，含有多种营养物质 ，且有保健功效。"}},
                   {score:'69.19%',root:"植物-其它",keyword:"红色草莓",baike_info:false},
                   {score:'36.03%',root:"植物-无患子科",keyword:"荔枝",baike_info:false},
                   {score:'18.16%',root:"商品-穿戴",keyword:"毛线",baike_info:false},
@@ -83,14 +83,21 @@ Page({
               sizeType: ['compressed'], //图片大小：压缩图片，第一次
               sourceType: ['album', 'camera'], //图片来源：相册或相机
               success (res) {
+                wx.showLoading({
+                  title:'图片处理中'
+                })
                 // tempFilePath可以作为img标签的src属性显示图片
                 let tempFilePath = res.tempFilePaths[0]
         //         that.setData({picFilePath:tempFilePath})
                 let img_size = res.tempFiles[0].size //图片大小--字节单位
                 // 如果大于2M则进行压缩
                 if(img_size >= 2097152){
-                  wx.showLoading({
-                    title: '压缩图片中',
+                  wx.hideLoading({
+                    success(){
+                      wx.showLoading({
+                        title: '压缩图片中',
+                      })
+                    }
                   })
                 // 对图片进行二次压缩
                   //-----返回选定照片的本地文件路径列表，获取照片信息-----------

@@ -1,13 +1,47 @@
 /* pages/history/history.wxss */
 @keyframes cardIn{
+  from{
+    opacity:0;
+  }
   to{
+    opacity: 1;
     transform: translate(0,0)
   }
 }
 
+.clear_box{
+  display: flex;
+  width: 90%;
+  height: 50rpx;
+  margin: 0 auto 10rpx auto;
+  position: relative;
+  justify-content: flex-end;
+}
+
+.clearAll{
+  font-size: 20rpx;
+  color: #EDEDED;
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background-color: #FC1944;
+  border-radius: 8rpx;
+}
+
+.delete{
+  width: 40rpx;
+  height: 40rpx;
+  color: #FC1944;
+  text-align: center;
+  line-height: 40rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .history{
   background-color:rgb(245, 221, 242);
-  padding-top:30rpx;
   height: 100vh;
 }
 
@@ -48,7 +82,7 @@
 }
 
 .history_img{
-  width: 100rpx;
+  width: 120rpx;
   height: 100rpx;
   border-top-right-radius: 10rpx;
 }
