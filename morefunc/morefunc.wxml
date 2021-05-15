@@ -1,6 +1,7 @@
 <!--moreFunc/morefunc.wxml-->
 <!-- 更多功能悬浮框 -->
 <view class="more_container">
+  <!-- <button open-type="contact">客服</button> -->
   <!-- 点击提示 -->
   <view class="tip {{!moreTap&&tipShow ? 'tipStyle' : 'tipHide'}}">
     <view class="tip_text">点击这里查看更多</view>

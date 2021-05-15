@@ -1,8 +1,9 @@
 <!--pages/history/history.wxml-->
 <!-- 识别记录 -->
 <view class="history">
-  <view class="clear_box" bindtap="clearAll">
-  <view class="clearAll" wx:if="{{historyLists.length != 0}}">× 清空记录</view>
+  <view class="clear_box">
+    <view class="deleteBox" wx:if="{{historyLists.length != 0}}" bindtap="openDelete">{{delete_text}}</view>
+  <view class="clearAll" wx:if="{{historyLists.length != 0}}" bindtap="clearAll"><iconfont class="qingkong" name="qingkong"/><view>清空记录</view></view>
   </view>
     <view class="no_history" wx:if="{{historyLists.length == 0}}">无识别记录</view>
   <block wx:for="{{historyLists}}" wx:key="index">
@@ -14,7 +15,7 @@
   </view>
   <view>
   <image src="{{item.url}}" class="history_img" bindtap="preViewHistoryImg" data-history="{{item.url}}"></image>
-  <view class="delete" bindtap="delete" data-storage="{{item}}">×</view>
+  <view class="delete" bindtap="delete" data-storage="{{item}}" wx:if="{{showDelete}}">×</view>
   </view>
   <view class="history_time">{{item.time}}</view>
   </view>

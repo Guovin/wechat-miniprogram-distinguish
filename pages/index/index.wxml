@@ -1,5 +1,10 @@
 <!--index.wxml-->
 <view class="container">
+  <!-- 提示 -->
+  <view class="tipBox">
+  <view class="messageTop"></view>
+  <view class="shareTip">点击这里收藏或分享</view>
+  </view>
   <!-- 首页识别类型分类 -->
   <view class="cate_page">
     <view class="between_advance">

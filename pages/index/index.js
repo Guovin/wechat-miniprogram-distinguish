@@ -46,10 +46,16 @@ Page({
         withShareTicket: true,
         menus: ['shareAppMessage', 'shareTimeline']
       })
+    return{
+      title: "这个好用，可以准确识别事物！"
+    }
     },
 
   //用户点击右上角分享朋友圈
   onShareTimeline: function () {
+    return{
+      title: "这个好用，可以准确识别事物！"
+    }
   }, 
 
 

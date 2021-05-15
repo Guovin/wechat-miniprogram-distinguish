@@ -44,18 +44,18 @@
 }
 
 .tip_text{
-  background-color: rgb(50, 50, 50);
+  background-color: rgb(241, 184, 234);
   font-size: 20rpx;
   text-align: center;
   line-height: 50rpx;
-  color:rgba(231, 224, 224, 0.959);
+  color:#fff;
   border-radius: 8rpx;
 }
 
 .tip_dic{
   width: 20rpx;
   height: 20rpx;
-  background-color: rgb(50, 50, 50);
+  background-color: rgb(241, 184, 234);
   border-radius:3rpx;
   position: relative;
   left: 50%;

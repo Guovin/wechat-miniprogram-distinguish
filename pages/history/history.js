@@ -9,8 +9,21 @@ Page({
     historyLists: [],
     // 显示识别记录
     historyShow: false,
-    //当前存在识别记录数量
-    historyNum:0
+    // 当前存在识别记录数量
+    historyNum:0,
+    // 显示删除按钮
+    showDelete:false,
+    // 删除标签内容
+    delete_text:'× 删除模式'
+  },
+
+  //启动删除模式
+  openDelete(){
+    if(!this.data.showDelete){
+      this.setData({showDelete:true,delete_text:'× 关闭删除模式'})
+    }else{
+      this.setData({showDelete:false,delete_text:'× 删除模式'})
+    }
   },
 
   // 点击预览历史记录的图片

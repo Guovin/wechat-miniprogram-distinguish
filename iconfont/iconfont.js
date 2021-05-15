@@ -1,6 +1,6 @@
 Component({
   properties: {
-    // more | 2 | lishi2 | chenggong | youjian | dengpao | hongmoshibie | dongwutubiao_gou | shiwu1 | hua1 | guanjianci | fenleishouye | wine | sousuo1
+    // qingkong | more | 2 | lishi2 | chenggong | youjian | dengpao | hongmoshibie | dongwutubiao_gou | shiwu1 | hua1 | guanjianci | fenleishouye | wine | sousuo1
     name: {
       type: String,
     },
