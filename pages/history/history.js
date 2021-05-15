@@ -44,19 +44,29 @@ Page({
       content:'确定要清空所有记录吗？',
       success (res) {
         if (res.confirm) {
-          wx.clearStorage({
-            success: (res) => {
-              // 清空页面上显示的记录
-              that.setData({historyLists:[]})
-              return wx.showToast({
-                icon:'success',
-                title: '清空记录成功'
-              })
-            },
-            fail:(res)=>{
-              return wx.showToast({
-                icon:'error',
-                title: '清空记录失败！'
+          // 区分其它缓存记录
+          // 读取缓存记录
+          let info = wx.getStorageInfoSync()
+          let keyLists = info.keys
+          keyLists.forEach(item => {
+            // 区分反馈、授权信息缓存
+            if(item.indexOf("https://") == -1  && item.indexOf("auth") == -1){
+              wx.removeStorage({
+                key: item,
+                success(){
+                  // 清空页面上显示的记录
+                  that.setData({historyLists:[]})
+                  return wx.showToast({
+                    icon:'success',
+                    title: '清空记录成功'
+                  })
+                },
+                fail:(res)=>{
+                  return wx.showToast({
+                    icon:'error',
+                    title: '清空记录失败！'
+                  })
+                }
               })
             }
           })

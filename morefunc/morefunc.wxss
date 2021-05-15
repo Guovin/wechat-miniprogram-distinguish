@@ -69,10 +69,10 @@
 }
 
 .cube_wrap{
-  perspective: 800rpx;
-  perspective-origin: 50% 180rpx;
+  perspective: 1000rpx;
+  perspective-origin: 50% 680rpx;
   width:60rpx;
-  margin: 30rpx auto;
+  margin: 40rpx auto;
 }
 
 .cube{
@@ -133,7 +133,7 @@
   width: 60rpx;
   height: 60rpx;
   border-radius: 50%;
-  transform:translateZ(5rpx)
+  transform:translateZ(3rpx)
 }
 
 .ball2{
@@ -142,7 +142,7 @@
   border-radius: 50%;
   position: absolute;
   top: 0;
-  transform:translateZ(-5rpx)
+  transform:translateZ(-3rpx)
 }
 
 @keyframes topOpen{
@@ -356,7 +356,7 @@
   position: absolute;
   z-index: 9999;
   right:80rpx;
-  bottom:70rpx;
+  bottom:60rpx;
   border-radius: 50%;
   border:2rpx solid rgba(0,0,0,.3);
 }
@@ -397,7 +397,7 @@
   position: absolute;
   z-index: 9999;
   right:80rpx;
-  bottom:70rpx;
+  bottom:60rpx;
   line-height: 60rpx;
 }
 

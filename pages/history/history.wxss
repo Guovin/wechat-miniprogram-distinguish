@@ -105,7 +105,7 @@
 }
 
 .history_img{
-  width: 175rpx;
+  width: 180rpx;
   height: 100rpx;
   border-top-right-radius: 10rpx;
 }

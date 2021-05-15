@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    closeMore: false,
     // 选择的识别分类
     selectItem:'plant',
     // 滑块内容
@@ -43,6 +44,11 @@ Page({
   cHeight : 300,
   // 压缩后的图片链接
   canvasImgUrl:''
+},
+
+// 关闭更多悬浮框
+closeMore(){
+  this.setData({closeMore:false})
 },
 
 // 首页滑块切换事件

@@ -3,7 +3,7 @@
 <view class="more_container">
   <!-- <button open-type="contact">客服</button> -->
   <!-- 点击提示 -->
-  <view class="tip {{!moreTap&&tipShow&&firstPage ? 'tipStyle' : 'tipHide'}}">
+  <view class="tip {{!moreTap&&tipShow&&indexPage ? 'tipStyle' : 'tipHide'}}">
     <view class="tip_text">点击我试试</view>
     <view class="tip_dic"></view>
   </view>

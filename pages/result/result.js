@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    closeMore:false,
     //本地图片链接
     picFilePath:'',
     // 上一页选择的识别分类
@@ -33,6 +34,11 @@ Page({
     //当前swiper标签索引
     current:0,
   },
+
+  // 关闭更多悬浮框
+closeMore(){
+  this.setData({closeMore:false})
+},
 
   // 点击结果进行复制
   copyResult(e){
@@ -119,7 +125,7 @@ Page({
         let url = res.savedFilePath
         // 保存识别记录缓存
         let newDate = new Date() //日期时间
-        let time = that.dateFormat("YYYY-mm-dd HH:MM", newDate)
+        let time = that.dateFormat("YYYY-mm-dd HH:MM:SS", newDate)
         let title = ''
         let score = ''
         if(newResult.length != 0){

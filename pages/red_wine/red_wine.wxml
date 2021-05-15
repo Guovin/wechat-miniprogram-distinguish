@@ -1,5 +1,5 @@
 <!--pages/advance/advance.wxml-->
-<view class="index_page" bindtap="pauseAutoPlay">
+<view class="index_page" bindtap="pauseAutoPlay" bindtap="closeMore">
     <!-- 首页卡片 -->
     <view class="index_card">
       <!-- 滑块图片容器 -->
@@ -24,4 +24,4 @@
 </view>
 
 <!-- 更多功能悬浮框 -->
-<morefunc more_container="moreFunc"></morefunc>
+<morefunc more_container="moreFunc" closeMore="{{closeMore}}"></morefunc>

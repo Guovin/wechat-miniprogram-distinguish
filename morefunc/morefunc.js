@@ -8,20 +8,15 @@ Component({
     firstPage:Boolean,
     closeMore:Boolean
   },
-  // 监听属性-判断是否是首页，显示提示
+  // 监听属性-判断是否是首页，显示提示,点击其它位置关闭更多功能悬浮框
   observers:{
-    'firstPage':function(val){
-      if(val == ''){
-        return
-      }else{
-        return this.setData({firstPage:val})
+    'firstPage,closeMore':function(first,close){
+      if(first !== ''){
+        // 注意这里不能使用firstPage，即properties与data同名属性，否则会造成死循环！
+        this.setData({indexPage:first})
       }
-    },
-    'closeMore':function(val){
-      if(val == ''){
-        return
-      }else{
-        return this.setData({moreTap:val})
+      if(close !== ''){
+        this.setData({moreTap:close})
       }
     }
   },
@@ -30,7 +25,7 @@ Component({
    */
   data: {
     // 首页判断
-    firstPage:false,
+    indexPage:false,
     // 初始化
     isInit:true,
     // 更多悬浮框点击
@@ -69,8 +64,8 @@ Component({
     let keyLists = info.keys
     let historyLists = []
     keyLists.forEach(item => {
-      // 区分反馈缓存
-      if(item.indexOf("https://") == -1 && item.indexOf("historySaw") == -1){
+      // 区分反馈、历史记录条数、授权信息缓存
+      if(item.indexOf("https://") == -1 && item.indexOf("historySaw") == -1 && item.indexOf("auth") == -1){
         let history = {}
         let keys = item.split(";")
         history.title = keys[0]
@@ -156,7 +151,7 @@ Component({
         let name = res.userInfo.nickName
         let avatar = res.userInfo.avatarUrl
         that.setData({avatarUrl:avatar,nickName:name,dialogFormVisible:true})
-        that.saveAuth(name)
+        that.saveAuth(`${name},${avatar}`)
       },
       fail(res){
         console.log(res)
@@ -244,9 +239,11 @@ Component({
     // 查询授权信息
     wx.getStorage({
       key: 'auth',
-      success(){
+      success(res){
           // 存在
           // 授权成功
+          let dataList = res.data.split(",")
+          that.setData({nickName:dataList[0],avatarUrl:dataList[1]})
           // 表单校验初始化
           that.initValidate()
           // 获取缓存中的用户信息
@@ -330,8 +327,9 @@ Component({
             }else{
               //保存消息记录
               let newDate = new Date() //获取当前日期与时间
+              let time = that.dateFormat("YYYY-mm-dd HH:MM:SS", newDate)
               // 保存Storage，key为昵称+头像地址+时间，data为发送的邮箱+内容
-              let key = `${that.data.nickName},${that.data.avatarUrl},${newDate.toLocaleString()}`
+              let key = `${that.data.nickName},${that.data.avatarUrl},${time}`
               let data = `${that.data.form.name},${that.data.form.massage}`
               wx.setStorageSync(key,data)
               that.getStorage()
@@ -341,6 +339,27 @@ Component({
         })
       }
   },
+
+  // 时间格式化
+  dateFormat(fmt, date) {
+    let ret;
+    const opt = {
+        "Y+": date.getFullYear().toString(),        // 年
+        "m+": (date.getMonth() + 1).toString(),     // 月
+        "d+": date.getDate().toString(),            // 日
+        "H+": date.getHours().toString(),           // 时
+        "M+": date.getMinutes().toString(),         // 分
+        "S+": date.getSeconds().toString()          // 秒
+        // 有其他格式化字符需求可以继续添加，必须转化成字符串
+    };
+    for (let k in opt) {
+        ret = new RegExp("(" + k + ")").exec(fmt);
+        if (ret) {
+            fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+        };
+    };
+    return fmt;
+},
 
 // 表单校验
   initValidate(){

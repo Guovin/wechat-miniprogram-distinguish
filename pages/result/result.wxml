@@ -1,6 +1,6 @@
 <!--pages/result/result.wxml-->
 <!-- <view class="result_container" wx:if="{{picFilePath}}" bindtap="closeLeft" bindtouchmove="slideEnd" bindtouchstart="sildeStart"> -->
-  <view class="result_container" wx:if="{{picFilePath}}">
+  <view class="result_container" wx:if="{{picFilePath}}" bindtap="closeMore">
   <view class="pic_container" bindtap="preViewImg">
     <image class="picture" bindload="selectPicOk" src="{{picFilePath}}">
     </image>
@@ -43,4 +43,4 @@
   </view>
   </view>
 <!-- 更多功能悬浮框 -->
-<morefunc more_container="moreFunc"></morefunc>
+<morefunc more_container="moreFunc" closeMore="{{closeMore}}"></morefunc>
