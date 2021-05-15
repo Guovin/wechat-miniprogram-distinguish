@@ -2,7 +2,13 @@
 Page({
   data: {
     // 首页初始化
-    firstPage:true
+    firstPage:true,
+    closeMore: false
+  },
+
+  // 关闭更多悬浮框
+  closeMore(){
+    this.setData({closeMore:false})
   },
 
   // 点击跳转通用识别

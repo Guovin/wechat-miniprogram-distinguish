@@ -33,7 +33,7 @@
 <!-- 授权提示对话框 -->
 <view class="dialog_container" wx:if="{{showAuthTip}}">
 <view class="authTip_dialog">
-  <view class="authTip_content">使用反馈功能需要先进行授权哦</view>
+  <view class="authTip_content">该功能需要您的基本信息</view>
       <view class="auth_footer">
         <view class="left_view">
         <button  type="warn" bindtap="authButtonNo" class="btn_no">拒绝</button>

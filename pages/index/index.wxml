@@ -6,7 +6,7 @@
   <view class="shareTip">点击这里收藏或分享</view>
   </view>
   <!-- 首页识别类型分类 -->
-  <view class="cate_page">
+  <view class="cate_page" bindtap="closeMore">
     <view class="between_advance">
     <view class="advance_card" bindtap="selectAdvance">
       <view class="advance_item"><iconfont class="cate_iconfont" name="hongmoshibie"/></view>
@@ -38,5 +38,5 @@
   </view>
 
   <!-- 更多功能悬浮框 -->
-  <morefunc more_container="moreFunc" firstPage="{{firstPage}}"></morefunc>
+  <morefunc more_container="moreFunc" firstPage="{{firstPage}}" closeMore="{{closeMore}}"></morefunc>
 </view>

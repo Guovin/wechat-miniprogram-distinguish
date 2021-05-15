@@ -5,15 +5,23 @@ Component({
   externalClasses: ['more_container'],
   
   properties:{
-    firstPage:Boolean
+    firstPage:Boolean,
+    closeMore:Boolean
   },
   // 监听属性-判断是否是首页，显示提示
   observers:{
-    'isInit':function(val){
+    'firstPage':function(val){
       if(val == ''){
         return
       }else{
         return this.setData({firstPage:val})
+      }
+    },
+    'closeMore':function(val){
+      if(val == ''){
+        return
+      }else{
+        return this.setData({moreTap:val})
       }
     }
   },
@@ -139,7 +147,21 @@ Component({
 
   //同意授权
   authButtonYes(){
+    let that = this
     this.setData({showAuthTip: false})
+    // 获取用户信息
+    wx.getUserProfile({
+      desc:'用于基本信息显示',
+      success: function(res) {
+        let name = res.userInfo.nickName
+        let avatar = res.userInfo.avatarUrl
+        that.setData({avatarUrl:avatar,nickName:name,dialogFormVisible:true})
+        that.saveAuth(name)
+      },
+      fail(res){
+        console.log(res)
+      }
+    })
   },
 
   // 获取缓存中的用户信息
@@ -211,34 +233,26 @@ Component({
     })
   },
 
+  // 保存授权信息
+  saveAuth(data){
+    wx.setStorageSync('auth', data)
+  },
+
   // 打开对话框
   showDialog(){
     let that = this
-    // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.userinfo" 这个 scope
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userInfo']) {
-          // 如果没有，则进行提示授权
-          that.setData({showAuthTip:true})
-        }else{
+    // 查询授权信息
+    wx.getStorage({
+      key: 'auth',
+      success(){
+          // 存在
           // 授权成功
           // 表单校验初始化
           that.initValidate()
           // 获取缓存中的用户信息
           that.getUserFromStorage().then(()=>{
-          // 授权成功后，若缓存中用户信息不存在，则进行获取
-          if(!that.data.nickName){
-            // 获取用户信息
-            wx.getUserInfo({
-              success: function(res) {
-                let name = res.userInfo.nickName
-                let avatar = res.userInfo.avatarUrl
-                that.setData({avatarUrl:avatar,nickName:name,dialogFormVisible:true})
-              }
-            })
-          }
           // 之前已经授权，存在用户信息缓存，直接还原历史记录
-          else if(that.data.nickName && that.data.myStorage.length == 0){
+          if(that.data.nickName && that.data.myStorage.length == 0){
             that.getHistory()
           }
           // 小程序未被关闭，用户信息已经存在，直接打开对话框
@@ -246,7 +260,12 @@ Component({
             that.setData({dialogFormVisible:true})
           }
         }
-        )}
+        )
+      },
+      fail(){
+      // 不存在
+      // 获取用户信息
+      that.setData({showAuthTip:true})
       }
     })
   },
